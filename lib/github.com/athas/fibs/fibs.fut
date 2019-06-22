@@ -15,7 +15,7 @@ local let mul (x00,x01,x10,x11) (y00,y01,y10,y11)  =
 local let Q = (1,1,1,0)
 local let ne = (1,0,0,1)
 
--- | Generate the first @n@ Fibonacci numbers using a parallel
+-- | Generate the first `n` Fibonacci numbers using a parallel
 -- algorithm.
 --
 -- **Work:** *O(n)*
@@ -23,7 +23,7 @@ local let ne = (1,0,0,1)
 -- **Span:** *O(log(n))*
 let fibs (n: i32): [n]i32 = replicate n Q |> scan mul ne |> map (.2)
 
--- | Generate the @n@th Fibonacci number (0-indexed) using a parallel
+-- | Generate the `n`th Fibonacci number (0-indexed) using a parallel
 -- algorithm.  Specifically, `fib n == last (fibs (n+1)`, but `fib` is
 -- more efficient.  However, `fib_seq`@term is likely even more
 -- efficient.
@@ -33,7 +33,7 @@ let fibs (n: i32): [n]i32 = replicate n Q |> scan mul ne |> map (.2)
 -- **Span:** *O(log(n))*
 let fib (n: i32): i32 = replicate n Q |> reduce mul ne |> (.1)
 
--- | Generate the first @n@ Fibonacci numbers using a sequential
+-- | Generate the first `n` Fibonacci numbers using a sequential
 -- *O(n)* algorithm.
 let fibs_seq (n: i32): []i32 =
   loop arr = replicate n 1 for i in 2..<n do
@@ -42,7 +42,7 @@ let fibs_seq (n: i32): []i32 =
     let arr[i] = x + y
     in arr
 
--- | Generate the @nth@ Fibonacci number (0-indexed) using a
+-- | Generate the `n`th Fibonacci number (0-indexed) using a
 -- sequential *O(n)* algorithm.
 let fib_seq(n: i32): i32 =
   let (x,_) = loop (x, y) = (1,1) for _i < n do (y, x+y)
